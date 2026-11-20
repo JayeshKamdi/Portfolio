@@ -318,3 +318,100 @@ background-image: linear-gradient(to right,#76b0ab,#ffffff,#842626);
 html {
   overflow-x: hidden;
 }
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* ---------- Tablet and phone (900px and below) ---------- */
+@media (max-width: 900px) {
+
+  body { padding: 1rem; }
+
+  /* Header: logo on top, buttons wrap underneath */
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    padding-bottom: 1.5rem;
+  }
+  .logo { width: 100%; text-align: center; }
+  .contact-btn, .github, .linkedin, .edits {
+    padding: 0.4rem 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  /* Hero */
+  main { min-height: auto; gap: 1.5rem; }
+  .title-section { margin-top: 1.5rem; }
+  main h1 {
+    font-size: 12vw;
+    letter-spacing: 0;
+  }
+  .location p { font-size: 1.2rem; }
+  .bio-section { margin-bottom: 1rem; }
+
+  /* 3D brain: sits in the page flow instead of floating off-screen */
+  .brain {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 60vh;
+  }
+
+  /* About section */
+  .about-section { margin-top: 4rem; }
+  .about-title { font-size: 2.8rem; margin-bottom: 1.5rem; }
+
+  /* Bento grid becomes one column */
+  .bento-grid {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "tech"
+      "time"
+      "passion";
+    gap: 1rem;
+  }
+  .intro, .tech, .time, .passion { min-height: auto; }
+  .card { padding: 1.5rem; }
+  .card-title { font-size: 1.5rem; }
+  .card-text { margin-top: 1rem; max-width: 100%; }
+
+  /* Small 3D model inside the intro card */
+  .model-box {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%;
+    height: 16rem;
+    margin-top: 1rem;
+  }
+  .info-3d { width: 100%; height: 100%; }
+
+  /* Skills image inside the tech card */
+  .bento-grid .skills-group {
+    position: static;
+    display: block;
+    width: 80%;
+    margin: 1.5rem auto 0;
+  }
+
+  /* Footer: cancel the smaller body padding, keep it edge to edge */
+  .site-footer { margin: 160px -1rem -1rem; }
+  .sf-waves { height: 80px; top: -79px; }
+  .sf-content { padding: 30px 16px 22px; }
+  .sf-links { gap: 10px; }
+  .sf-links a { padding: 0.4rem 1.3rem; font-size: 0.9rem; }
+}
+
+/* ---------- Phone only (600px and below) ---------- */
+@media (max-width: 600px) {
+  .logo { font-size: 1.25rem; }
+  .bio { font-size: 0.9rem; max-width: 100%; }
+  .about-title { font-size: 2.2rem; }
+  .brain { height: 50vh; }
+  .model-box { height: 14rem; }
+}
