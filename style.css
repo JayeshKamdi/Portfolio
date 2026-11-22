@@ -13,7 +13,11 @@ padding: 3rem;
     box-sizing: border-box;
     font-family:  'Arial', sans-serif;
 }
+html { scroll-behavior: smooth; }
+
 header{
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,59 +28,113 @@ header{
     letter-spacing: 3px;
     font-weight: 300;
 }
-.contact-btn{
-    padding: 0.5rem 2rem;
-    background-color: rgba(143, 143, 143, 0.2);
-    border: 1px solid rgba(102, 102, 102, 0.5);
-    border-radius: 50px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.github{
-    padding: 0.5rem 2rem;
-    background-color: rgba(143, 143, 143, 0.2);
-    border: 1px solid rgba(102, 102, 102, 0.5);
-    border-radius: 50px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.linkedin{
-    padding: 0.5rem 2rem;
-    background-color: rgba(143, 143, 143, 0.2);
-    border: 1px solid rgba(102, 102, 102, 0.5);
-    border-radius: 50px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.edits{
-    padding: 0.5rem 2rem;
-    background-color: rgba(143, 143, 143, 0.2);
-    border: 1px solid rgba(102, 102, 102, 0.5);
-    border-radius: 50px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.contact-btn:hover{
-    background-color: #76b0ab37;
-}
-.github:hover{
-    background-color: #76b0ab37;
-}
-.linkedin:hover{
-    background-color: #76b0ab37;
 
+/* ===== LIQUID NAVBAR (CSS only) ===== */
+:root {
+  --nav-accent: #629c96;
+  --nav-accent-deep: #3a5b58;
+  --nav-underline: #76b0ab;
+  --link-w: 108px;
 }
-.edits:hover{
-    background-color: #76b0ab37;
+
+#home, #about { scroll-margin-top: 2rem; }
+
+.liquid-nav {
+  max-width: 100%;
+  border-radius: 999px;
+  background: rgba(143, 143, 143, 0.2);
+  border: 1px solid rgba(102, 102, 102, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(118, 176, 171, 0.10);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
+.liquid-nav::-webkit-scrollbar { display: none; }
+
+.liquid-track {
+  --pos: 0;
+  position: relative;
+  display: flex;
+  width: max-content;
+  padding: 8px;
+}
+
+.liquid-goo {
+  position: absolute;
+  inset: 0;
+  filter: url(#liquid-goo);
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  left: calc(8px + var(--pos) * var(--link-w));
+  width: var(--link-w);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--nav-accent), var(--nav-accent-deep));
+  transition: left 0.5s cubic-bezier(0.34, 1.35, 0.64, 1);
+}
+.blob--main { top: 8px; height: calc(100% - 16px); }
+.blob--drip {
+  bottom: 5px;
+  height: 46%;
+  opacity: 0.95;
+  transition-duration: 0.75s;
+}
+
+.liquid-nav a {
+  position: relative;
+  z-index: 1;
+  width: var(--link-w);
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.liquid-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--nav-underline);
+  transform: translateX(-50%);
+  transition: width 0.3s;
+}
+.liquid-nav a:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+
+html:has([id="about"]:target) .liquid-track { --pos: 1; }
+
+@media (hover: hover) {
+  .liquid-nav a:hover::after { width: 40%; }
+  .liquid-track:has(a:nth-of-type(1):hover) { --pos: 0; }
+  .liquid-track:has(a:nth-of-type(2):hover) { --pos: 1; }
+  .liquid-track:has(a:nth-of-type(3):hover) { --pos: 2; }
+  .liquid-track:has(a:nth-of-type(4):hover) { --pos: 3; }
+  .liquid-track:has(a:nth-of-type(5):hover) { --pos: 4; }
+  .liquid-track:has(a:nth-of-type(6):hover) { --pos: 5; }
+}
+.liquid-track:has(a:nth-of-type(1):focus-visible) { --pos: 0; }
+.liquid-track:has(a:nth-of-type(2):focus-visible) { --pos: 1; }
+.liquid-track:has(a:nth-of-type(3):focus-visible) { --pos: 2; }
+.liquid-track:has(a:nth-of-type(4):focus-visible) { --pos: 3; }
+.liquid-track:has(a:nth-of-type(5):focus-visible) { --pos: 4; }
+.liquid-track:has(a:nth-of-type(6):focus-visible) { --pos: 5; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob { transition: none; }
+}
+
 main{
     display: flex;
     justify-content: space-between;
@@ -219,6 +277,151 @@ background-image: linear-gradient(to right,#76b0ab,#ffffff,#842626);
     width: 70%;
     
 }
+
+/* ===== Waving footer ===== */
+.site-footer {
+  position: relative;
+  margin: 120px -3rem -3rem;      /* cancels body's 3rem padding: edge to edge, nothing below */
+  background: linear-gradient(180deg, #1d2829 0%, #0f1314 100%);
+  color: #fff;
+}
+
+.sf-waves {
+  position: absolute;
+  left: 0;
+  top: -119px;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.sf-wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  animation: sf-slide linear infinite;
+}
+
+.sf-wave path { fill: currentColor; }
+
+.sf-wave.w1 { color: #76b0ab; opacity: .30; animation-duration: 16s; height: 100%; }
+.sf-wave.w2 { color: #3f605e; opacity: .60; animation-duration: 11s; animation-direction: reverse; height: 85%; }
+.sf-wave.w3 { color: #1d2829; opacity: 1;   animation-duration: 7s;  height: 65%; }
+
+@keyframes sf-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.sf-content {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 28px;
+  text-align: center;
+}
+
+.sf-brand {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+  background-image: linear-gradient(rgb(133,133,133), rgb(255,255,255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sf-tagline {
+  margin-top: 8px;
+  font-size: .95rem;
+  color: rgba(255, 255, 255, .65);
+}
+
+.sf-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+/* ===== Waving footer ===== */
+.site-footer {
+  position: relative;
+  margin: 420px -3rem -3rem;      /* cancels body's 3rem padding: edge to edge, nothing below */
+  background: linear-gradient(180deg, #1d2829 0%, #0f1314 100%);
+  color: #fff;
+}
+
+.sf-waves {
+  position: absolute;
+  left: 0;
+  top: -119px;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.sf-wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  animation: sf-slide linear infinite;
+}
+
+.sf-wave path { fill: currentColor; }
+
+.sf-wave.w1 { color: #76b0ab; opacity: .30; animation-duration: 16s; height: 100%; }
+.sf-wave.w2 { color: #3f605e; opacity: .60; animation-duration: 11s; animation-direction: reverse; height: 85%; }
+.sf-wave.w3 { color: #1d2829; opacity: 1;   animation-duration: 7s;  height: 65%; }
+
+@keyframes sf-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.sf-content {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 28px;
+  text-align: center;
+}
+
+.sf-brand {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+  background-image: linear-gradient(rgb(133,133,133), rgb(255,255,255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sf-tagline {
+  margin-top: 8px;
+  font-size: .95rem;
+  color: rgba(255, 255, 255, .65);
+}
+
+.sf-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px 0;
+}
+
 /* ===== Waving footer ===== */
 .site-footer {
   position: relative;
@@ -317,17 +520,16 @@ background-image: linear-gradient(to right,#76b0ab,#ffffff,#842626);
 }
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
-/* ---------- Tablet and phone (900px and below) ---------- */
 @media (max-width: 900px) {
 
   body { padding: 1rem; }
 
-  /* Header: logo on top, buttons wrap underneath */
   header {
     flex-wrap: wrap;
     justify-content: center;
@@ -335,12 +537,9 @@ html {
     padding-bottom: 1.5rem;
   }
   .logo { width: 100%; text-align: center; }
-  .contact-btn, .github, .linkedin, .edits {
-    padding: 0.4rem 1.3rem;
-    font-size: 0.9rem;
-  }
+  :root { --link-w: 96px; }
+  .liquid-nav a { font-size: 0.95rem; }
 
-  /* Hero */
   main { min-height: auto; gap: 1.5rem; }
   .title-section { margin-top: 1.5rem; }
   main h1 {
@@ -350,7 +549,6 @@ html {
   .location p { font-size: 1.2rem; }
   .bio-section { margin-bottom: 1rem; }
 
-  /* 3D brain: sits in the page flow instead of floating off-screen */
   .brain {
     position: relative;
     top: auto;
@@ -359,11 +557,9 @@ html {
     height: 60vh;
   }
 
-  /* About section */
   .about-section { margin-top: 4rem; }
   .about-title { font-size: 2.8rem; margin-bottom: 1.5rem; }
 
-  /* Bento grid becomes one column */
   .bento-grid {
     width: 100%;
     height: auto;
@@ -380,7 +576,6 @@ html {
   .card-title { font-size: 1.5rem; }
   .card-text { margin-top: 1rem; max-width: 100%; }
 
-  /* Small 3D model inside the intro card */
   .model-box {
     position: relative;
     right: auto;
@@ -391,7 +586,6 @@ html {
   }
   .info-3d { width: 100%; height: 100%; }
 
-  /* Skills image inside the tech card */
   .bento-grid .skills-group {
     position: static;
     display: block;
@@ -399,7 +593,6 @@ html {
     margin: 1.5rem auto 0;
   }
 
-  /* Footer: cancel the smaller body padding, keep it edge to edge */
   .site-footer { margin: 160px -1rem -1rem; }
   .sf-waves { height: 80px; top: -79px; }
   .sf-content { padding: 30px 16px 22px; }
@@ -407,9 +600,11 @@ html {
   .sf-links a { padding: 0.4rem 1.3rem; font-size: 0.9rem; }
 }
 
-/* ---------- Phone only (600px and below) ---------- */
 @media (max-width: 600px) {
   .logo { font-size: 1.25rem; }
+  :root { --link-w: 84px; }
+  .liquid-nav a { font-size: 0.85rem; }
+  .liquid-nav a::after { display: none; }
   .bio { font-size: 0.9rem; max-width: 100%; }
   .about-title { font-size: 2.2rem; }
   .brain { height: 50vh; }

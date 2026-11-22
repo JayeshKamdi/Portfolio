@@ -6,14 +6,36 @@
     <title>Jayesh | Portfolio</title>
     <link rel="stylesheet"  href="style.css">
 </head>
-<body>
+<body id="top">
     <header>
-        <div class="logo">Jayesh Kamdi</div>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=2153.jayesh@gmail.com"><button class="contact-btn">Contact</button></a>
-       <a href="https://github.com/JayeshKamdi"> <button class="github">Github</button></a>
-       <a href="https://www.linkedin.com/in/jayeshkamdi/"> <button class="linkedin">Linkedin</button></a>
-        <a href="https://drive.google.com/drive/folders/1i1IOp0qyInE2vEzw9tDmAG8JuO0o_Krd?usp=drive_link"><button class="edits">Edits</button></a>
-    </header>
+    <div class="logo">Jayesh Kamdi</div>
+
+    <nav class="liquid-nav" aria-label="Main navigation">
+        <div class="liquid-track">
+            <div class="liquid-goo" aria-hidden="true">
+                <span class="blob blob--drip"></span>
+                <span class="blob blob--main"></span>
+            </div>
+            <a href="#top">Home</a>
+            <a href="#about">About</a>
+            <a href="https://drive.google.com/drive/folders/1i1IOp0qyInE2vEzw9tDmAG8JuO0o_Krd?usp=drive_link" target="_blank" rel="noopener">Edits</a>
+            <a href="https://github.com/JayeshKamdi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/jayeshkamdi/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=2153.jayesh@gmail.com" target="_blank" rel="noopener">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Gooey filter used by the navbar. Keep it once, anywhere inside body. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <filter id="liquid-goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+            <feBlend in="SourceGraphic" in2="goo"/>
+        </filter>
+    </defs>
+</svg>
     <main>
         <div class="title-section"><h1>WEB DEVELOPER</h1></div>
         <div class="location">
@@ -32,7 +54,7 @@
 
 
     
-    <section class="about-section" >
+    <section class="about-section" id="about">
         <h1 class="about-title"> About Me</h1>
         <div class="bento-grid">
             <div class="card intro">
@@ -61,7 +83,7 @@
             <div class="card time">
                <h2 class="card-title">EXPERIENCE</h2>
                <p class="card-text">
-                I  have edited my videos on Youtube for over three years, and have participated in the SIH hackathon and I have been selected as a Video Editor for the Technical Club.
+                I  have edited my videos on Youtube for over three years, and have participated in the SIH hackathon and have appeared for the Technical club interview for video editing.
                </p>
                <img src="gradient3&4.png" alt="" class="background-image">
 
@@ -82,8 +104,7 @@
 
     </section>
     <script type="module" src="https://cdn.spline.design/@splinetool/viewer@2.0.139/build/spline-viewer.js"></script>
-
-
+  
     <footer class="site-footer">
   <div class="sf-waves" aria-hidden="true">
     <svg class="sf-wave w1" viewBox="0 0 2400 120" preserveAspectRatio="none">
